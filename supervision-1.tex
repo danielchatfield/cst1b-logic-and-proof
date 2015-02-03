@@ -1,0 +1,402 @@
+\documentclass{supervision}
+\usepackage{course}
+
+\Supervision{1}
+
+% Dear all,
+% Thanks for the confirmation.  For next week, we'll plan to meet
+% according to the following schedule, but we may re-arrange for the
+% following week.
+% Just to check, would Thursday 5th Feb. work as an alternative to
+% Tuesday 3rd Feb. for everyone?
+%
+% For next week, we'll meet on Tuesday, 27th.  The supervisions will be
+% in my room at 2 Adams Road (room 8).  For the first supervision, I
+% would like you to attempt the following exercises from the Logic and
+% Proof course notes: Exercises 3, 4, 5, 6, 7, 9, 10 and 11.
+%
+% Please hand in your attempted solutions to these exercises at Robinson
+% College porters' lodge (marked for my attention) at the latest by 5pm
+% on the day before the supervision.
+%
+% I look forward to seeing you all.
+% Best,
+% -Anuj Dawar.
+
+\begin{document}
+  \section*{Lecture 2 Exercise Questions}
+  \begin{questions}
+    % Skip
+    %\question Is the formula $P \to \lnot P$ satisfiable, or valid?
+
+    % Skip
+    %\question Verify the de Morgan and distributive laws using truth tables.
+
+    \SetQuestionNumber{3}
+
+    \question Each of the following formulas is satisfiable but not valid.
+      Exhibit an interpretation that makes the formula true and another that
+      makes the formula false.
+      \begin{parts}
+        \part $ P \to Q $
+          \begin{solution}
+            The formula is true under the interpretation that maps $P$ and $Q$
+            to $1$ but false for the interpretation that maps $P$ to 1 and $Q$
+            to $0$.
+          \end{solution}
+
+        \part $ P \lor Q \to P \land Q $
+          \begin{solution}
+            The formula is true under the interpretation that maps $P$ and $Q$
+            to $1$ but false for the interpretation that maps $P$ to 1 and $Q$
+            to $0$.
+          \end{solution}
+
+        \part $ \lnot (P \lor Q \lor R) $
+          \begin{solution}
+            The formula is true under the interpretation that maps $P$, $Q$ and
+            $R$ to $0$ but false under all other interpretations.
+          \end{solution}
+
+        \part $ \lnot (P \land Q) \lor \lnot (Q \lor R) \land (P \lor R) $
+          \begin{solution}
+            The formula is true under the interpretation that maps $P$, $Q$ and
+            $R$ to $0$ but false under the interpretation that maps $P$ and $Q$
+            to $0$ and $R$ to $1$.
+          \end{solution}
+      \end{parts}
+
+    \question Convert each of the following propositional formulas into
+      Conjunctive Normal Form and also into Disjunctive Normal Form. For each
+      formula, state whether it is valid, satisfiable, or unsatisfiable;
+      justify each answer.
+      \begin{parts}
+        \part $ (P \to Q) \land (Q \to P) $
+          \begin{solution}
+            Eliminating $\to$ gives:
+            \begin{equation*}
+              (\lnot P \lor Q) \land (\lnot Q \lor P)
+            \end{equation*}
+
+            \begin{description}
+              \item[Conjunctive Normal Form]
+                \emph{Already in Conjunctive Normal Form after first step}
+
+              \item[Disjunctive Normal Form]
+                Applying distributive law gives:
+                \begin{equation*}
+                  ((\lnot P \lor Q) \land \lnot Q) \lor
+                  ((\lnot P \lor Q) \land       P)
+                \end{equation*}
+
+                Simplifying gives:
+                \begin{equation*}
+                  (\lnot P \land \lnot Q) \lor (Q \land P)
+                \end{equation*}
+              \item[Valid] The formula is not valid as there are
+                interpretations for which it is inconsistent. For example, the
+                interpretation that maps $P$ and $Q$ to $1$ and $0$
+                respectively.
+              \item[Satisfiable] The formula is \emph{satisfiable} as there
+                are interpretations for which it is consistent. For example,
+                the interpretation that maps $P$ and $Q$ both to $1$.
+            \end{description}
+          \end{solution}
+
+        \part $ ((P \land Q) \lor R) \land \lnot (P \lor R) $
+          \begin{solution}
+            \emph{No $\to$ to eliminate}
+
+            Pushing negations in until they apply only to atoms, giving:
+            \begin{equation*}
+              ((P \land Q) \lor R) \land \lnot P \land \lnot R
+            \end{equation*}
+
+            \begin{description}
+              \item[Conjunctive Normal Form]
+                Push disjunctions in until they apply only to literals, giving:
+                \begin{equation*}
+                  (P \lor R) \land (Q \lor R) \land \lnot P \land \lnot R
+                \end{equation*}
+
+                Which simplifies to false as $P$ and $R$ must both be $0$ to
+                satisfy the third and fourth conjunct which means that the
+                first conjunct cannot be satisfied and thus the formula is
+                equivalent to false.
+
+              \item[Disjunctive Normal Form]
+                Applying other distributive law, pushing the conjuncts in
+                gives:
+                \begin{equation*}
+                  ((P \land Q) \land \lnot P \land \lnot R) \lor
+                  (R \land \lnot P \land \lnot R)
+                \end{equation*}
+
+                Simplifying gives just $f$ since the first disjunct contains
+                both $P$ and $\lnot P$ and the second contains both $R$ and
+                $\lnot R$.
+
+              \item[Unsatisfiable] The formula is unsatisfiable as I have
+                shown that it is equivalent to false.
+
+            \end{description}
+          \end{solution}
+        \part $ \lnot (P \lor Q \lor R) \lor (P \land Q) \lor R $
+          \begin{solution}
+            Pushing negations in until they apply only to atoms, giving:
+            \begin{equation*}
+              \label{eq:4-c-negations}
+              \lnot P \land \lnot Q \land \lnot R) \lor (P \land Q) \lor R
+            \end{equation*}
+
+            \begin{description}
+              \item[Conjunctive Normal Form]
+                Push disjunctions in until they apply only to literals, using:
+                \begin{equation}
+                  \label{eq:cnf-1}
+                  A \lor (B \land C) \simeq (A \lor B) \land (A \lor C)
+                \end{equation}
+                \begin{equation}
+                  \label{eq:cnf-2}
+                  (B \land C) \lor A \simeq (B \lor A) \land (C \lor A)
+                \end{equation}
+
+                \begin{equation*}
+                  (\lnot P \land \lnot Q \land \lnot R) \lor ((P \land Q) \lor R)
+                \end{equation*}
+
+                Using \eqref{eq:cnf-2} with $B = \lnot P$, $C = \lnot Q \land
+                \lnot R$ and $A = (P \land Q) \lor R$.
+
+                \begin{equation*}
+                    \simeq (\lnot P \lor (P \land Q) \lor R) \land
+                    ((\lnot Q \land \lnot R) \lor (P \land Q) \lor R)
+                \end{equation*}
+
+                Using \eqref{eq:cnf-2} with $B = P$, $C =Q$ and
+                $A = R \lor \lnot P$.
+
+                \begin{equation*}
+                    \simeq ((P \lor R \lor \lnot P) \land (Q \lor R \lor \lnot P)) \land
+                    ((\lnot Q \land \lnot R) \lor (P \land Q) \lor R)
+                \end{equation*}
+                \begin{equation*}
+                    \simeq (Q \lor R \lor \lnot P) \land
+                    ((\lnot Q \land \lnot R) \lor (P \land Q) \lor R)
+                \end{equation*}
+
+
+                Using \eqref{eq:cnf-2} with $B = \lnot Q$, $C = \lnot R$ and
+                $A = (P \land Q) \lor R$ gives:
+
+                \begin{equation*}
+                    \simeq (Q \lor R \lor \lnot P) \land
+                    ((\lnot Q \lor ((P \land Q) \lor R)) \land (\lnot R \lor (P \land Q) \lor R))
+                \end{equation*}
+                \begin{equation*}
+                    \simeq (Q \lor R \lor \lnot P) \land
+                    (\lnot Q \lor R \lor (P \land Q))
+                \end{equation*}
+
+                Using \eqref{eq:cnf-1} with $A = \lnot Q \lor R $, $B = P$ and
+                $C = Q$ gives:
+
+                \begin{equation*}
+                    \simeq (Q \lor R \lor \lnot P) \land
+                    (\lnot Q \lor R \lor P) \land (\lnot Q \lor R \lor Q)
+                \end{equation*}
+
+
+              \item[Disjunctive Normal Form]
+                Applying other distributive law, pushing the conjuncts in
+                gives:
+                \begin{equation*}
+                  (\lnot P \land \lnot Q \land \lnot R) \lor (P \land Q) \lor R
+                \end{equation*}
+
+
+              \item[Satisfiable] The formula is satisfiable as it is consistent
+                under the interpretation that maps $P$, $Q$, and $R$ to $0$, $1$,
+                and $0$ respectively.
+
+            \end{description}
+          \end{solution}
+      \end{parts}
+    \question Using ML, define datatypes for representing propositions and
+      interpretations. Write a function to test whether or not a proposition
+      holds under an interpretation (both supplied as arguments). Write a
+      function to convert a proposition to Negation Normal Form.
+      \begin{solution}
+        \emph{\lstinline|sml| has stopped working on my machine and I haven't managed to fix it so I haven't been able to check this code.}
+        \codefile[ml]{code/5-datatypes.sml}
+      \end{solution}
+
+
+    \section*{Lecture 3 Exercise Questions}
+    \question Prove the following sequents:
+      \begin{parts}
+        \part $ \lnot \lnot A \to A $
+        \begin{solution}          \vspace{2in}
+        \end{solution}
+
+        \part $ A \land B \to B \land A $
+        \begin{solution}          \vspace{2.3in}
+        \end{solution}
+
+        \part $ A \lor B \to B \lor A $
+        \begin{solution}          \vspace{2.8in}
+        \end{solution}
+
+      \end{parts}
+    \question Prove the following sequents:
+      \begin{parts}
+        \part $ (A \land B) \land C \to A \land (B \land C) $
+        \begin{solution}          \vspace{3.4in}
+        \end{solution}
+
+        \part $ (A \lor B) \land (A \lor C) \to A \lor (B \land C) $
+        \begin{solution}          \vspace{4in}
+        \end{solution}
+
+        \part $ \lnot (A \lor B) \to \lnot A \land \lnot B $
+        \begin{solution}          \vspace{4in}
+        \end{solution}
+
+      \end{parts}
+    \section*{Lecture 4 Exercise Questions}
+    % Skip
+%    \question To test your understanding of quantifiers, consider the following
+%      formulas: \emph{everybody loves somebody} vs \emph{there is somebody that
+%      everybody loves}.
+%      \begin{equation}
+%        \forall x \: \exists y \: \operatorname{loves}(x, y) \label{eq:1}
+%      \end{equation}
+%      \begin{equation}
+%        \exists y \: \forall x \: \operatorname{loves}(x, y) \label{eq:2}
+%      \end{equation}
+%      Does \eqref{eq:1} imply \eqref{eq:2}? Does \eqref{eq:2} imply \eqref{eq:1}
+%      Consider both the informal meaning and the formal semantics defined above.
+    \SetQuestionNumber{9}
+    \question
+      \begin{parts}
+        \part Describe a formula that is true in precisely those domains that
+          contain at least $m$ elements (We sat it \emph{characterises} those
+          domains.)
+          \begin{solution}
+            Formula:
+            \begin{equation*}
+              \forall i, j \in \{0, 1, \ldots, m \}
+                \quad \forall x_0, x_1, \ldots, x_m. \: x_i \neq x_j
+            \end{equation*}
+          \end{solution}
+
+        \part Describe a formula that characterises the domains containing
+          fewer than $m$ elements.
+          \begin{solution}
+            The negation of the first part:
+            \begin{equation*}
+              \lnot (
+                \forall i, j \in \{0, 1, \ldots, m \}
+                \: \forall x_0, x_1, \ldots, x_m. \: x_i \neq x_j
+              )
+            \end{equation*}
+          \end{solution}
+
+      \end{parts}
+
+    \question Let $\approx$ be a 2-place predicate symbol, which we write using
+      infix notation as $x \approx y$ instead of $\approx(x,y)$. Consider the
+      axioms:
+
+      \setcounter{equation}{0}
+      \begin{equation}
+        \label{eq:1}
+        \forall x. \: x \approx x
+      \end{equation}
+      \begin{equation}
+        \label{eq:2}
+        \forall x, y. \: x \approx y \to y \approx x
+      \end{equation}
+      \begin{equation}
+        \label{eq:3}
+        \forall x, y, z. \: x \approx y \land y \approx z \to x \approx z
+      \end{equation}
+
+      Let the universe be the set of natural numbers, $\mathbb{N} = \{0, 1, 2, \ldots\}$.
+      Which axioms hold if $I[\approx]$ is:
+      \begin{parts}
+        \part the empty relation, $\emptyset$?
+          \begin{solution}
+              Axioms \eqref{eq:2} and \eqref{eq:3} hold.
+          \end{solution}
+
+        \part the universal relation, $\{ (x, y) \: | \: x, y \in \mathbb{N} \}$?
+          \begin{solution}
+              Axioms \eqref{eq:1}, \eqref{eq:2} and \eqref{eq:3} hold.
+          \end{solution}
+
+        \part the equality relation, $\{ (x, x) \: | \: x \in \mathbb{N} \}$?
+          \begin{solution}
+              Axioms \eqref{eq:1}, \eqref{eq:2} and \eqref{eq:3} hold.
+          \end{solution}
+
+        \part the relation $\{ (x, y) \: | \: x, y \in \mathbb{N} \land (x+y \text{ is even}) \}$?
+          \begin{solution}
+              Axioms \eqref{eq:1}, \eqref{eq:2} and \eqref{eq:3} hold.
+          \end{solution}
+
+        \part the relation $\{ (x, y) \: | \: x, y \in \mathbb{N} \land (x+y = 100) \}$?
+          \begin{solution}
+              Axioms \eqref{eq:2} and \eqref{eq:3} hold.
+          \end{solution}
+
+        \part the relation $\{ (x, y) \: | \: x, y \in \mathbb{N} \land (x \leq y) \}$?
+          \begin{solution}
+              Axioms \eqref{eq:1} and \eqref{eq:3} hold.
+          \end{solution}
+      \end{parts}
+
+    \question Taking $=$ and $R$ as 2-place relation symbols, consider the following axioms:
+
+      \setcounter{equation}{0}
+      \begin{equation}
+        \forall x.       \: \lnot R(x, x)
+      \end{equation}
+      \begin{equation}
+        \forall x, y.    \: \lnot (R(x, y) \land R(y, x))
+      \end{equation}
+      \begin{equation}
+        \forall x, y, z. \: R(x, y) \land R(y, z) \to R(x, z)
+      \end{equation}
+      \begin{equation}
+        \forall x, y.    \: R(x, y) \lor (x = y) \lor R(y, x)
+      \end{equation}
+      \begin{equation}
+        \forall x, z.    \:R(x, z) \to \exists y. R(x, y) \land R(y, z)
+      \end{equation}
+
+
+
+      Consider only interpretations that make $=$ denote the equality relation.
+
+      \emph{This exercise asks whether you can make the connection between the axioms and typical mathematical objects satisfying them. A start is to say that $R(x, y)$ means $x < y$, but on what domain?}
+
+      \begin{parts}
+        \part Exhibit two interpretations that satisfy axioms 1-5.
+          \begin{solution}
+            Axioms 1-5 are satisfied under the interpretation that $R(x, y)$ means $x < y$ with the domain of real numbers. Similarly the interpretation that $R(x, y)$ means $x > y$.
+          \end{solution}
+
+        \part Exhibit two interpretations that satisfy axioms 1-4 and falsify axiom 5.
+          \begin{solution}
+            Axioms 1-4 are satisfied and 5 falsified under the same interpretations as part (a) but with the domain of natural numbers.
+          \end{solution}
+
+        \part Exhibit two interpretations that satisfy axioms 1-3 and falsify 4 and 5.
+          \begin{solution}
+              Axioms 1-3 are satisfied with 4 and 5 falsified under the interpretation that $R(x, y)$ means $x > 2y$ over the natural numbers.
+          \end{solution}
+
+      \end{parts}
+  \end{questions}
+\end{document}
