@@ -1,0 +1,132 @@
+\documentclass{supervision}
+\usepackage{course}
+
+\Supervision{2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dear all,
+% To confirm what we said today, the supervisions next week will be
+% according to the following schedule:
+%
+% Tuesday, 4pm : Will and Priyesh
+% Thursday, 2pm: James and Daniel
+%           3pm: Alex and Jack
+%
+% For this supervision, I would like you to attempt the exercises in
+% Sections 5-8 of the notes and hand in your solutions to the following
+% (by 5pm on the day before your supervision):
+% 14, 15, 16, 17, 18, 19, 22, 25, 26, 30, 32, 33.
+%
+% Best,
+%  -Anuj.
+
+\begin{document}
+  \section*{Lecture 2 Exercise Questions}
+  \begin{questions}
+    \SetQuestionNumber{14}
+    \question Prove $\lnot \forall y \: [(Q(a) \lor Q(b)) \land \lnot Q(y)]$
+      using equivalences, and then formally using sequent calculus.
+
+    \question Prove the following sequents. \emph{Note that the last one
+      requires two uses of the ($\forall l$) rule.}
+      \begin{parts}
+        \part $(\forall x \: P(x)) \land (\forall x \: Q(x)) \implies \forall 
+          y \: (P(y) \land Q(y))$
+
+        \part $\forall x \: (P(x) \land Q(x)) \implies (\forall y \: P(y))
+          \land (\forall y \: Q(y))$
+
+        \part $\forall x \: [P(x) \to P(f(x))], P(a) \implies P(f(f(a)))$
+
+      \end{parts}
+
+    \question Prove $\forall x \: [P(x) \lor P(a)] \simeq P(a)$.
+
+    \question Prove the following using sequent calculus. The last one is
+      difficult and requires two uses of ($\exists r$).
+      \begin{parts}
+        \part $P(a) \lor \exists x. P(f(x)) \implies \exists y \: P(y)$
+        \part $\exists x \: (P(x) \lor Q(x)) \implies (\exists y \: P(y)) \lor
+          (\exists y \: Q(y))$
+        \part $\implies \exists z \: (P(z) \to P(a) \land P(b))$
+      \end{parts}
+
+    \question Apply the DPLL procedure to the clause set
+      \begin{equation*}
+        \{P,\, Q\} \quad\quad \{\lnot P,\, Q\} \quad\quad \{P,\, \lnot Q\}
+        \quad \quad \{\lnot P,\, \lnot Q\}
+      \end{equation*}
+    \question Use resolution to prove $(A \to B \lor C) \to [(A \to B)
+      \lor (A \to C)]$.
+
+    \SetQuestionNumber{22}
+    \question Use resolution (showing the steps of converting the formula into
+      clauses) to prove these two formulas:
+      \begin{parts}
+        \part $Q \to R) \land (R \to P \land Q) \land (P \to Q \lor R) \to (P
+          \leftrightarrow Q$)
+        \part $(P \land Q \to R) \land (P \lor Q \lor R) \to ((P
+          \leftrightarrow Q) \to R)$
+      \end{parts}
+
+    \SetQuestionNumber{25}
+    \question Consider a first-order language with $0$ and $1$ as constant
+      symbols, with $-$ as a 1-place function symbol and $+$ as a 2-place
+      function  symbol, and with $<$ as a 2-place predicate symbol.
+      \begin{parts}
+        \part Describe the Herbrand Universe for this language.
+        \part The language can be interpreted by taking the integers for the
+          universe and giving $0$, $1$, $-$, $+$ and $<$ their usual meanings
+          over the integers. What do those symbols denote in the corresponding
+          Herbrand model?
+      \end{parts}
+
+    \question For each of the following pairs of terms give a most general
+      unifier or explain why none exists. Do not rename variables prior to
+      performing the unification.
+      \begin{parts}
+        \part $f(g(x), z)    \quad\quad f(y, h(y))$
+        \part $j(x, y, z)    \quad\quad j(f(y, y), f(z, z), f(a, a))$
+        \part $j(x, z, x)    \quad\quad j(y, f(y), z)$
+        \part $j(f(x), y, a) \quad\quad j(y, z, z)$
+        \part $j(g(x), a, y) \quad\quad j(z, x, f(z, z))$
+      \end{parts}
+
+    \SetQuestionNumber{30}
+    \question Convert these formulas into clauses, showing each step:
+      \begin{enumerate}
+        \item negating the formula
+        \item eliminating $\to$ and $\leftrightarrow$
+        \item pushing in negations
+        \item Skolemizing
+        \item dropping the universal quantifiers
+        \item converting the resulting formula into CNF
+      \end{enumerate}
+      \begin{parts}
+        \part $(\forall x \: \exists y \: R(x, y)) \to (\exists y \: \forall x
+          \: R(x, y))$
+        \part $(\exists y \: \forall x \: R(x, y)) \to (\forall x \: \exists y
+          \: R(x, y))$
+        \part $\exists x \: \forall y z \: ((P(y) \to Q(z)) \to (P(x) \to
+          Q(x)))$
+        \part $\lnot \exists y \: \forall x \: (R(x, y) \leftrightarrow \lnot
+          \exists z \: (R(x, z) \land R(z, x)))$
+      \end{parts}
+
+    \SetQuestionNumber{32}
+    \question Find a refutation from the following set of clauses using
+      resolution and factoring.
+      \begin{equation*}
+        \{ \lnot P(x, a),\, \lnot P(x, y),\, \lnot P(y,x) \}
+      \end{equation*}
+      \begin{equation*}
+        \{ P(x, f(x)),\, P(x,a) \}
+      \end{equation*}
+      \begin{equation*}
+        \{ P(f(x), x),\, P(x,a) \}
+      \end{equation*}
+
+
+  \end{questions}
+\end{document}
